@@ -10,7 +10,7 @@
 })(function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    const fs_1 = require("fs");
+    // const fs_1 = require("fs");
     class ReedSolomonErasure {
         constructor(exports) {
             this.exports = exports;
@@ -25,7 +25,8 @@
                 return ReedSolomonErasure.fromResponse(fetch(`${pathToCurrentScript}/reed_solomon_erasure_bg.wasm`));
             }
             else {
-                return ReedSolomonErasure.fromBytes(fs_1.readFileSync(`${__dirname}/reed_solomon_erasure_bg.wasm`));
+                throw Error('Cannot read from file system');
+                // return ReedSolomonErasure.fromBytes(fs_1.readFileSync(`${__dirname}/reed_solomon_erasure_bg.wasm`));
             }
         }
         /**
