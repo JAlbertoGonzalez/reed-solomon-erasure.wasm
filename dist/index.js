@@ -1,4 +1,3 @@
-    const currentScript = globalThis.document && globalThis.document.currentScript;
 (function (factory) {
     if (typeof module === "object" && typeof module.exports === "object") {
         var v = factory(require, exports);
@@ -20,14 +19,7 @@
          * Automagical method that will try to detect environment (Node.js or browser) and load *.wasm file from current directory
          */
         static async fromCurrentDirectory() {
-            if (currentScript) {
-                const pathToCurrentScript = currentScript.src.split('/').slice(0, -1).join('/');
-                return ReedSolomonErasure.fromResponse(fetch(`${pathToCurrentScript}/reed_solomon_erasure_bg.wasm`));
-            }
-            else {
-                throw Error('Cannot read from file system');
-                // return ReedSolomonErasure.fromBytes(fs_1.readFileSync(`${__dirname}/reed_solomon_erasure_bg.wasm`));
-            }
+            return ReedSolomonErasure.fromResponse(fetch(`/reed_solomon_erasure_bg.wasm`));
         }
         /**
          * For asynchronous instantiation, primarily in Browser environment, expects you to load WASM file with `fetch()`
